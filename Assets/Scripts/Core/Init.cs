@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace AndreyGritsenko.MonoECS.Core
 {
+    [DefaultExecutionOrder(-500)]
     public sealed class Init : MonoBehaviour
     {
         private readonly List<EntitySystem> _systems = new();
