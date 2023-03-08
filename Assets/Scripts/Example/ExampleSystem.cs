@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AndreyGritsenko.MonoECS.Example
 {
-    public sealed class ExampleSystem : ComponentSystem<ExampleComponent>
+    public sealed class ExampleSystem : SystemComponent<ExampleComponent>
     {
         protected override void OnEnableSystem()
         {

@@ -1,27 +1,24 @@
 ﻿namespace AndreyGritsenko.MonoECS.Core
 {
-    public abstract class ComponentSystem<T> : EntitySystem where T : Entity
+    public abstract class SystemComponent<T> : System where T : Entity
     {
         protected override void OnEnableSystem()
         {
             base.OnEnableSystem();
             
-            Entity.OnRegistered += Register;
-            Entity.OnUnregistered += Unregister;
+            EntityContainer<T>.OnRegistered += OnEnableComponent;
+            EntityContainer<T>.OnUnregistered += OnDisableComponent;
         }
 
         protected override void OnDisableSystem()
         {
             base.OnDisableSystem();
             
-            Entity.OnRegistered -= Register;
-            Entity.OnUnregistered -= Unregister;
+            EntityContainer<T>.OnRegistered -= OnEnableComponent;
+            EntityContainer<T>.OnUnregistered -= OnDisableComponent;
         }
 
         protected virtual void OnEnableComponent(T component) => Entities.Add(component);
         protected virtual void OnDisableComponent(T component) => Entities.Remove(component);
-
-        private void Register(Entity entity) => OnEnableComponent((T)entity);
-        private void Unregister(Entity entity) => OnDisableComponent((T)entity);
     }
 }
