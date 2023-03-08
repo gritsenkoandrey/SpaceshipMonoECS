@@ -1,7 +1,16 @@
-﻿namespace AndreyGritsenko.MonoECS.Core
+﻿using System.Collections.Generic;
+
+namespace AndreyGritsenko.MonoECS.Core
 {
     public abstract class SystemComponent<T> : System where T : Entity
     {
+        protected readonly HashSet<T> Entities;
+
+        protected SystemComponent()
+        {
+            Entities = new HashSet<T>();
+        }
+
         protected override void OnEnableSystem()
         {
             base.OnEnableSystem();
@@ -16,6 +25,8 @@
             
             EntityContainer<T>.OnRegistered -= OnEnableComponent;
             EntityContainer<T>.OnUnregistered -= OnDisableComponent;
+            
+            Entities.Clear();
         }
 
         protected virtual void OnEnableComponent(T component) => Entities.Add(component);
