@@ -2,7 +2,7 @@
 
 namespace AndreyGritsenko.MonoECS.Core
 {
-    public abstract class SystemComponent<T> : System where T : Entity
+    public abstract class SystemComponent<T> : SystemBase where T : Entity
     {
         protected readonly HashSet<T> Entities;
 

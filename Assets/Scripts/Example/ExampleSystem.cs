@@ -1,10 +1,18 @@
 ﻿using AndreyGritsenko.MonoECS.Core;
+using AndreyGritsenko.MonoECS.Dependency;
 using UnityEngine;
 
 namespace AndreyGritsenko.MonoECS.Example
 {
     public sealed class ExampleSystem : SystemComponent<ExampleComponent>
     {
+        private readonly IInputService _inputService;
+
+        public ExampleSystem(IInputService inputService)
+        {
+            _inputService = inputService;
+        }
+
         protected override void OnEnableSystem()
         {
             base.OnEnableSystem();
@@ -13,6 +21,21 @@ namespace AndreyGritsenko.MonoECS.Example
         protected override void OnDisableSystem()
         {
             base.OnDisableSystem();
+        }
+
+        protected override void OnUpdateSystem()
+        {
+            base.OnUpdateSystem();
+        }
+
+        protected override void OnFixedUpdateSystem()
+        {
+            base.OnFixedUpdateSystem();
+        }
+
+        protected override void OnLateUpdateSystem()
+        {
+            base.OnLateUpdateSystem();
         }
 
         protected override void OnEnableComponent(ExampleComponent component)
@@ -29,6 +52,8 @@ namespace AndreyGritsenko.MonoECS.Example
         
         private void Run(ExampleComponent component)
         {
+            Debug.Log(_inputService.Vector);
+            
             Vector3 pos = component.transform.position;
             
             for (int i = 0; i < component.Count; i++)
