@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AndreyGritsenko.MonoECS.Dependency
+namespace AndreyGritsenko.MonoECS.Dependency.Input
 {
     public interface IInputService
     {

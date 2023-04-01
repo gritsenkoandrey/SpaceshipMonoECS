@@ -1,5 +1,6 @@
 ﻿using AndreyGritsenko.MonoECS.Core;
 using AndreyGritsenko.MonoECS.Dependency;
+using AndreyGritsenko.MonoECS.Dependency.Input;
 using UnityEngine;
 
 namespace AndreyGritsenko.MonoECS.Example

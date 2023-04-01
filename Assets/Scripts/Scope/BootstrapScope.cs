@@ -1,5 +1,6 @@
-﻿using AndreyGritsenko.MonoECS.Dependency;
-using UnityEngine.SceneManagement;
+﻿using AndreyGritsenko.MonoECS.Dependency.Input;
+using AndreyGritsenko.MonoECS.Dependency.Loader;
+using AndreyGritsenko.MonoECS.Dependency.StateMachine;
 using VContainer;
 using VContainer.Unity;
 
@@ -7,8 +8,6 @@ namespace AndreyGritsenko.MonoECS.Scope
 {
     public sealed class BootstrapScope : LifetimeScope
     {
-        private const string GameScene = "Game";
-        
         protected override void Awake()
         {
             base.Awake();
@@ -16,14 +15,11 @@ namespace AndreyGritsenko.MonoECS.Scope
             DontDestroyOnLoad(this);
         }
 
-        private void Start()
-        {
-            SceneManager.LoadSceneAsync(GameScene);
-        }
-
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<IInputService, InputService>(Lifetime.Singleton);
+            builder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
+            builder.Register<IGameStateMachine, GameStateMachine>(Lifetime.Singleton);
 
             builder.RegisterEntryPoint<BootstrapEntryPoint>().Build();
         }
