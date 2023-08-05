@@ -1,10 +1,9 @@
-﻿using AndreyGritsenko.MonoECS.Dependency.Input;
-using AndreyGritsenko.MonoECS.Dependency.Loader;
-using AndreyGritsenko.MonoECS.Dependency.StateMachine;
+﻿using MonoEcs.Dependency.Loader;
+using MonoEcs.Dependency.StateMachine;
 using VContainer;
 using VContainer.Unity;
 
-namespace AndreyGritsenko.MonoECS.Scope
+namespace MonoEcs.Scope
 {
     public sealed class BootstrapScope : LifetimeScope
     {
@@ -17,10 +16,10 @@ namespace AndreyGritsenko.MonoECS.Scope
 
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.Register<IInputService, InputService>(Lifetime.Singleton);
             builder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
             builder.Register<IGameStateMachine, GameStateMachine>(Lifetime.Singleton);
 
+            builder.RegisterEntryPoint<EcsEntryPoint>().Build();
             builder.RegisterEntryPoint<BootstrapEntryPoint>().Build();
         }
     }

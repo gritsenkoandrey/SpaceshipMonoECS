@@ -1,4 +1,4 @@
-﻿namespace AndreyGritsenko.MonoECS.Dependency.StateMachine
+﻿namespace MonoEcs.Dependency.StateMachine
 {
     public interface IEnterState : IExitState
     {

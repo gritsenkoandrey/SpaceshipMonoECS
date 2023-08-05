@@ -1,6 +1,6 @@
 ﻿using VContainer;
 
-namespace AndreyGritsenko.MonoECS.Dependency.StateMachine
+namespace MonoEcs.Dependency.StateMachine
 {
     public sealed class StateGameLoop : IEnterState
     {
@@ -11,7 +11,7 @@ namespace AndreyGritsenko.MonoECS.Dependency.StateMachine
             _gameStateMachine = gameStateMachine;
         }
 
-        public void Enter() { }
-        public void Exit() { }
+        void IEnterState.Enter() { }
+        void IExitState.Exit() { }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AndreyGritsenko.MonoECS.Dependency.Loader
+namespace MonoEcs.Dependency.Loader
 {
     public interface ISceneLoader
     {

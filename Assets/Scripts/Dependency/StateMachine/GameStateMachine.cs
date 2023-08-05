@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using VContainer;
 
-namespace AndreyGritsenko.MonoECS.Dependency.StateMachine
+namespace MonoEcs.Dependency.StateMachine
 {
     public sealed class GameStateMachine : IGameStateMachine
     {
@@ -20,14 +20,14 @@ namespace AndreyGritsenko.MonoECS.Dependency.StateMachine
             };
         }
         
-        public void Enter<TState>() where TState : class, IEnterState
+        void IGameStateMachine.Enter<TState>()
         {
             TState state = ChangeState<TState>();
 
             state.Enter();
         }
 
-        public void Enter<TState, TLoad>(TLoad load) where TState : class, IEnterLoadState<TLoad>
+        void IGameStateMachine.Enter<TState, TLoad>(TLoad load)
         {
             TState state = ChangeState<TState>();
             

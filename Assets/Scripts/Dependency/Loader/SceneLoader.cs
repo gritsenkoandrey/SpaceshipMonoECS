@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace AndreyGritsenko.MonoECS.Dependency.Loader
+namespace MonoEcs.Dependency.Loader
 {
     public sealed class SceneLoader : ISceneLoader
     {
-        public void Load(string name, Action onLoaded = null)
+        void ISceneLoader.Load(string name, Action onLoaded)
         {
             LoadScene(name, onLoaded);
         }

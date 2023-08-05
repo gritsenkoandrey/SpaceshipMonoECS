@@ -1,7 +1,7 @@
-﻿using AndreyGritsenko.MonoECS.Dependency.Loader;
+﻿using MonoEcs.Dependency.Loader;
 using VContainer;
 
-namespace AndreyGritsenko.MonoECS.Dependency.StateMachine
+namespace MonoEcs.Dependency.StateMachine
 {
     public sealed class StateBootstrap : IEnterState
     {
@@ -18,8 +18,8 @@ namespace AndreyGritsenko.MonoECS.Dependency.StateMachine
             _sceneLoader = container.Resolve<ISceneLoader>();
         }
 
-        public void Enter() => _sceneLoader.Load(Bootstrap, Next);
-        public void Exit() { }
+        void IEnterState.Enter() => _sceneLoader.Load(Bootstrap, Next);
+        void IExitState.Exit() { }
         private void Next() => _gameStateMachine.Enter<StateLoadLevel, string>(Game);
     }
 }
