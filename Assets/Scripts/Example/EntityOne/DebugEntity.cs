@@ -1,9 +1,13 @@
 ﻿using MonoEcs.Core.Entities;
+using UnityEngine;
 
 namespace MonoEcs.Example.EntityOne
 {
     public sealed class DebugEntity : Entity<DebugEntity>
     {
+        public int Index;
+        public Vector3 Vector;
+        
         protected override void OnEntityCreate()
         {
             base.OnEntityCreate();

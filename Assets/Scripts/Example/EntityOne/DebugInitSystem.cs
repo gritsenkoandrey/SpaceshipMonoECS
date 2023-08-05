@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MonoEcs.Example.EntityOne
 {
-    public sealed class DebugInitSystem : InitSystem<DebugEntity>
+    public sealed class DebugInitSystem : InitializeSystem<DebugEntity>
     {
         private readonly EcsWorld _ecsWorld;
 
@@ -14,9 +14,9 @@ namespace MonoEcs.Example.EntityOne
             _ecsWorld = ecsWorld;
         }
 
-        protected override void Init(DebugEntity entity)
+        protected override void Enable(DebugEntity entity)
         {
-            base.Init(entity);
+            base.Enable(entity);
             
             ref DebugOneComponent debugOneComponent = ref _ecsWorld.GetComponent<DebugOneComponent>(entity.Id);
             ref DebugTwoComponent debugTwoComponent = ref _ecsWorld.GetComponent<DebugTwoComponent>(entity.Id);
@@ -24,8 +24,15 @@ namespace MonoEcs.Example.EntityOne
             _ecsWorld.SetComponent(entity.Id, ref debugOneComponent);
             _ecsWorld.SetComponent(entity.Id, ref debugTwoComponent);
             
-            debugOneComponent.Value = Vector3.one;
-            debugTwoComponent.Value = 47;
+            debugOneComponent.Value = entity.Vector;
+            debugTwoComponent.Value = entity.Index;
+        }
+
+        protected override void Disable(DebugEntity entity)
+        {
+            base.Disable(entity);
+            
+            Debug.Log($"Disable {entity.Id}");
         }
     }
 }

@@ -21,7 +21,7 @@ namespace MonoEcs.Core.Systems
             
             for (int i = 0; i < _ecsWorld.Components.Count; i++)
             {
-                if (_ecsWorld.Components[i].Type == type)
+                if (_ecsWorld.Components[i].GetTypeComponent() == type)
                 {
                     _components.Add(_ecsWorld.Components[i]);
 
@@ -34,19 +34,19 @@ namespace MonoEcs.Core.Systems
 
         protected bool Filter(int entity)
         {
-            int count = 0;
-            
             for (int i = 0; i < _components.Count; i++)
             {
-                if (!_components[i].HasComponent(entity))
+                if (!_components[i].ContainsComponent(entity))
                 {
                     return false;
                 }
             }
 
+            int count = 0;
+            
             for (int i = 0; i < _ecsWorld.Components.Count; i++)
             {
-                if (_ecsWorld.Components[i].HasComponent(entity))
+                if (_ecsWorld.Components[i].ContainsComponent(entity))
                 {
                     count++;
                 }

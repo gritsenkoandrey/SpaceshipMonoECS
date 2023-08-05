@@ -18,24 +18,20 @@ namespace MonoEcs.Scope
         
         void IInitializable.Initialize()
         {
-            _ecsWorld.BindComponent<DebugOneComponent>();
-            _ecsWorld.BindComponent<DebugTwoComponent>();
+            _ecsWorld.RegisterComponent<DebugOneComponent>();
+            _ecsWorld.RegisterComponent<DebugTwoComponent>();
 
-            _ecsWorld.BindSystem(new DebugInitSystem(_ecsWorld));
-            _ecsWorld.BindSystem(new ColorInitSystem(_ecsWorld));
+            _ecsWorld.RegisterSystem(new DebugInitSystem(_ecsWorld));
+            _ecsWorld.RegisterSystem(new ColorInitSystem(_ecsWorld));
             
-            _ecsWorld.BindSystem(new DebugRunSystem(_ecsWorld));
-            _ecsWorld.BindSystem(new ColorRunSystem(_ecsWorld));
+            _ecsWorld.RegisterSystem(new DebugRunSystem(_ecsWorld));
+            _ecsWorld.RegisterSystem(new ColorRunSystem(_ecsWorld));
         }
 
         void IStartable.Start() => _ecsWorld.EnableSystem();
-
         void ITickable.Tick() => _ecsWorld.Update();
-
         void IFixedTickable.FixedTick() => _ecsWorld.FixedUpdate();
-
         void ILateTickable.LateTick() => _ecsWorld.LateUpdate();
-
         void IDisposable.Dispose() => _ecsWorld.DisableSystem();
     }
 }

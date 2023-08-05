@@ -12,8 +12,6 @@ namespace MonoEcs.Example.EntityTwo
 
         public ColorRunSystem(EcsWorld ecsWorld) : base(ecsWorld)
         {
-            // _debugOne = Get<DebugOneComponent, EntityComponent<DebugOneComponent>>();
-
             _debugOne = Get<DebugOneComponent>();
         }
 

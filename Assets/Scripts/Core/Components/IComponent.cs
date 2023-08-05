@@ -4,9 +4,9 @@ namespace MonoEcs.Core.Components
 {
     public interface IComponent
     {
-        public Type Type { get; }
+        public Type GetTypeComponent();
         public void AddComponent();
         public void RemoveComponent(int entity);
-        public bool HasComponent(int entity);
+        public bool ContainsComponent(int entity);
     }
 }

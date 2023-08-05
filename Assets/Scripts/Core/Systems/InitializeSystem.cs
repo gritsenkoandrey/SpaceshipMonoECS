@@ -2,16 +2,17 @@
 
 namespace MonoEcs.Core.Systems
 {
-    public abstract class InitSystem<T> : IInitializeSystem where T : EntityBase
+    public abstract class InitializeSystem<T> : IInitializeSystem where T : EntityBase
     {
         private readonly EcsWorld _ecsWorld;
 
-        protected InitSystem(EcsWorld ecsWorld)
+        protected InitializeSystem(EcsWorld ecsWorld)
         {
             _ecsWorld = ecsWorld;
         }
 
-        protected virtual void Init(T entity) { }
+        protected virtual void Enable(T entity) { }
+        protected virtual void Disable(T entity) { }
 
         public void OnEnableSystem()
         {
@@ -31,12 +32,14 @@ namespace MonoEcs.Core.Systems
 
             entity.SetId(index);
             
-            Init(entity);
+            Enable(entity);
         }
 
         private void OnUnregistered(T entity)
         {
             _ecsWorld.UnregisterEntity(entity.Id);
+            
+            Disable(entity);
         }
     }
 }

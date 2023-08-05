@@ -7,31 +7,31 @@ namespace MonoEcs.Core
 {
     public sealed class EcsWorld
     {
-        private readonly List<IComponent> _components;
-        private readonly List<IUpdateSystem> _updateSystems;
-        private readonly List<ILateUpdateSystem> _lateUpdateSystems;
-        private readonly List<IFixedUpdateSystem> _fixedUpdateSystems;
-        private readonly List<IInitializeSystem> _initializesSystems;
         private readonly List<bool> _entities;
+        private readonly List<IComponent> _components;
+        private readonly List<IInitializeSystem> _initializeSystems;
+        private readonly List<IUpdateSystem> _updateSystems;
+        private readonly List<IFixedUpdateSystem> _fixedUpdateSystems;
+        private readonly List<ILateUpdateSystem> _lateUpdateSystems;
 
         public IReadOnlyList<IComponent> Components => _components;
 
         public EcsWorld()
         {
-            _components = new List<IComponent>();
-            _updateSystems = new List<IUpdateSystem>();
-            _lateUpdateSystems = new List<ILateUpdateSystem>();
-            _fixedUpdateSystems = new List<IFixedUpdateSystem>();
-            _initializesSystems = new List<IInitializeSystem>();
             _entities = new List<bool>();
+            _components = new List<IComponent>();
+            _initializeSystems = new List<IInitializeSystem>();
+            _updateSystems = new List<IUpdateSystem>();
+            _fixedUpdateSystems = new List<IFixedUpdateSystem>();
+            _lateUpdateSystems = new List<ILateUpdateSystem>();
         }
 
         public int RegisterEntity()
         {
-            int id = 0;
+            int id;
             int count = _entities.Count;
 
-            for (; id < count; id++)
+            for (id = 0; id < count; id++)
             {
                 if (!_entities[id])
                 {
@@ -69,7 +69,7 @@ namespace MonoEcs.Core
             
             for (int i = 0; i < _components.Count; i++)
             {
-                if (_components[i].Type == type)
+                if (_components[i].GetTypeComponent() == type)
                 {
                     return ref ((EntityComponent<T>) _components[i]).GetComponent(entity);
                 }
@@ -84,7 +84,7 @@ namespace MonoEcs.Core
 
             for (int i = 0; i < _components.Count; i++)
             {
-                if (_components[i].Type == type)
+                if (_components[i].GetTypeComponent() == type)
                 {
                     ((EntityComponent<T>)_components[i]).SetComponent(entity, ref component);
                 }
@@ -135,26 +135,26 @@ namespace MonoEcs.Core
 
         public void EnableSystem()
         {
-            for (int i = 0; i < _initializesSystems.Count; i++)
+            for (int i = 0; i < _initializeSystems.Count; i++)
             {
-                _initializesSystems[i].OnEnableSystem();
+                _initializeSystems[i].OnEnableSystem();
             }
         }
         
         public void DisableSystem()
         {
-            for (int i = 0; i < _initializesSystems.Count; i++)
+            for (int i = 0; i < _initializeSystems.Count; i++)
             {
-                _initializesSystems[i].OnDisableSystem();
+                _initializeSystems[i].OnDisableSystem();
             }
         }
         
-        public void BindComponent<T>() where T : struct
+        public void RegisterComponent<T>() where T : struct
         {
             _components.Add(new EntityComponent<T>(16));
         }
 
-        public void BindSystem<T>(T system) where T : ISystem
+        public void RegisterSystem<T>(T system) where T : ISystem
         {
             switch (system)
             {
@@ -168,7 +168,7 @@ namespace MonoEcs.Core
                     _lateUpdateSystems.Add(lateUpdateSystem);
                     break;
                 case IInitializeSystem initializeSystem:
-                    _initializesSystems.Add(initializeSystem);
+                    _initializeSystems.Add(initializeSystem);
                     break;
             }
         }
