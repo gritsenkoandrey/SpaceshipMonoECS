@@ -1,4 +1,4 @@
-﻿namespace AirPlane.Game.Components
+﻿namespace Game.Components
 {
     public struct PlayerComponent
     {

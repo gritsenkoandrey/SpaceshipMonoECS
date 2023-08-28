@@ -1,4 +1,4 @@
-﻿namespace AirPlane.App
+﻿namespace App
 {
     public static class SceneName
     {

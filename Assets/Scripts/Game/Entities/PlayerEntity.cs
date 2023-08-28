@@ -1,6 +1,6 @@
-﻿using AirPlane.Core.Entities;
+﻿using Core.Entities;
 
-namespace AirPlane.Game.Entities
+namespace Game.Entities
 {
     public sealed class PlayerEntity : Entity<PlayerEntity>
     {

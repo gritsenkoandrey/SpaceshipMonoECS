@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AirPlane.Game.Components
+namespace Game.Components
 {
     public struct PlanetComponent
     {

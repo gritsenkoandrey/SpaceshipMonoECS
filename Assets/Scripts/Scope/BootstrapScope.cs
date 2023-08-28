@@ -1,10 +1,10 @@
-﻿using AirPlane.Dependency.Input;
-using AirPlane.Dependency.Loader;
-using AirPlane.Dependency.StateMachine;
+﻿using Dependency.Input;
+using Dependency.Loader;
+using Dependency.StateMachine;
 using VContainer;
 using VContainer.Unity;
 
-namespace AirPlane.Scope
+namespace Scope
 {
     public sealed class BootstrapScope : LifetimeScope
     {

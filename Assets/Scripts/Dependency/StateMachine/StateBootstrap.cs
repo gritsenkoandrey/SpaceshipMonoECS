@@ -1,9 +1,9 @@
-﻿using AirPlane.App;
-using AirPlane.Dependency.Input;
-using AirPlane.Dependency.Loader;
+﻿using App;
+using Dependency.Input;
+using Dependency.Loader;
 using VContainer;
 
-namespace AirPlane.Dependency.StateMachine
+namespace Dependency.StateMachine
 {
     public sealed class StateBootstrap : IEnterState
     {

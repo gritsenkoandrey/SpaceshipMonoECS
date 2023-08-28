@@ -1,4 +1,4 @@
-﻿namespace AirPlane.Dependency.StateMachine
+﻿namespace Dependency.StateMachine
 {
     public interface IGameStateMachine
     {

@@ -1,13 +1,13 @@
 ﻿using System;
-using AirPlane.Core;
-using AirPlane.Dependency.Input;
-using AirPlane.Game.Components;
-using AirPlane.Game.Systems.Init;
-using AirPlane.Game.Systems.Run;
+using Core;
+using Dependency.Input;
+using Game.Components;
+using Game.Systems.Init;
+using Game.Systems.Run;
 using VContainer;
 using VContainer.Unity;
 
-namespace AirPlane.Scope
+namespace Scope
 {
     public sealed class EcsEntryPoint : IInitializable, IStartable, ITickable, IFixedTickable, ILateTickable, IDisposable
     {

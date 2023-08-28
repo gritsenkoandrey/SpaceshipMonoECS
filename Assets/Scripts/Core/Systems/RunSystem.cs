@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using AirPlane.Core.Components;
+using Core.Components;
 
-namespace AirPlane.Core.Systems
+namespace Core.Systems
 {
     public abstract class RunSystem : IRunSystem
     {

@@ -1,7 +1,7 @@
-﻿using AirPlane.Dependency.Input;
+﻿using Dependency.Input;
 using VContainer;
 
-namespace AirPlane.Dependency.StateMachine
+namespace Dependency.StateMachine
 {
     public sealed class StateGameLoop : IEnterState
     {

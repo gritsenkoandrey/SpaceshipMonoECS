@@ -1,7 +1,7 @@
-﻿using AirPlane.Dependency.Loader;
+﻿using Dependency.Loader;
 using VContainer;
 
-namespace AirPlane.Dependency.StateMachine
+namespace Dependency.StateMachine
 {
     public sealed class StateLoadLevel : IEnterLoadState<string>
     {

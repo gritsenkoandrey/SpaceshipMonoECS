@@ -1,10 +1,10 @@
-﻿using AirPlane.Core;
-using AirPlane.Core.Systems;
-using AirPlane.Game.Components;
-using AirPlane.Game.Entities;
+﻿using Core;
+using Core.Systems;
+using Game.Components;
+using Game.Entities;
 using UnityEngine;
 
-namespace AirPlane.Game.Systems.Init
+namespace Game.Systems.Init
 {
     public sealed class PlanetMoveInitSystem : InitializeSystem<PlanetEntity>
     {

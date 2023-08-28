@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AirPlane.Core.Components
+namespace Core.Components
 {
     public interface IComponent
     {

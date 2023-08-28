@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace AirPlane.Dependency.Input
+namespace Dependency.Input
 {
     public sealed class JoystickService : MonoBehaviour, IJoystickService, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {

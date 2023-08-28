@@ -1,11 +1,11 @@
-﻿using AirPlane.Core;
-using AirPlane.Core.Components;
-using AirPlane.Core.Systems;
-using AirPlane.Dependency.Input;
-using AirPlane.Game.Components;
+﻿using Core;
+using Core.Components;
+using Core.Systems;
+using Dependency.Input;
+using Game.Components;
 using UnityEngine;
 
-namespace AirPlane.Game.Systems.Run
+namespace Game.Systems.Run
 {
     public sealed class PlayerMoveRunSystem : RunSystem, IUpdateSystem
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using AirPlane.Core.Components;
-using AirPlane.Core.Systems;
+using Core.Components;
+using Core.Systems;
 
-namespace AirPlane.Core
+namespace Core
 {
     public sealed class EcsWorld
     {

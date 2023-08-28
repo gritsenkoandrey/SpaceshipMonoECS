@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AirPlane.Dependency.Input
+namespace Dependency.Input
 {
     public interface IJoystickService
     {

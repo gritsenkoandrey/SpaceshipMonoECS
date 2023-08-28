@@ -1,7 +1,7 @@
-﻿using AirPlane.Core.Entities;
+﻿using Core.Entities;
 using UnityEngine;
 
-namespace AirPlane.Game.Entities
+namespace Game.Entities
 {
     public sealed class PlanetEntity : Entity<PlanetEntity>
     {

@@ -1,6 +1,6 @@
-﻿using AirPlane.Core.Entities;
+﻿using Core.Entities;
 
-namespace AirPlane.Core.Systems
+namespace Core.Systems
 {
     public abstract class InitializeSystem<T> : IInitializeSystem where T : EntityBase
     {

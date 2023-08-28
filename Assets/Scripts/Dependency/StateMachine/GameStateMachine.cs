@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using VContainer;
 
-namespace AirPlane.Dependency.StateMachine
+namespace Dependency.StateMachine
 {
     public sealed class GameStateMachine : IGameStateMachine
     {

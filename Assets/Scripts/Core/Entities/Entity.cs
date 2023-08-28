@@ -1,4 +1,4 @@
-﻿namespace AirPlane.Core.Entities
+﻿namespace Core.Entities
 {
     public abstract class Entity<T> : EntityBase where T : EntityBase
     {

@@ -1,4 +1,4 @@
-﻿namespace AirPlane.Core.Systems
+﻿namespace Core.Systems
 {
     public interface IInitializeSystem : ISystem
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AirPlane.Core.Components
+namespace Core.Components
 {
     public sealed class EntityComponent<T> : IComponent where T : struct
     {

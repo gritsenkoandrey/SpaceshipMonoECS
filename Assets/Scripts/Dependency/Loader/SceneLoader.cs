@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace AirPlane.Dependency.Loader
+namespace Dependency.Loader
 {
     public sealed class SceneLoader : ISceneLoader
     {
