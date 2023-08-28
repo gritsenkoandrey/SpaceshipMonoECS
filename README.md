@@ -1,2 +1,0 @@
-# MonoECS
- Mono ECS

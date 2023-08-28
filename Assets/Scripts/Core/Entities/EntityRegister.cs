@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoEcs.Core.Entities
+namespace AirPlane.Core.Entities
 {
     public static class EntityRegister<T> where T : EntityBase
     {

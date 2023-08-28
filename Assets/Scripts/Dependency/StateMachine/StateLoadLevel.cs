@@ -1,7 +1,7 @@
-﻿using MonoEcs.Dependency.Loader;
+﻿using AirPlane.Dependency.Loader;
 using VContainer;
 
-namespace MonoEcs.Dependency.StateMachine
+namespace AirPlane.Dependency.StateMachine
 {
     public sealed class StateLoadLevel : IEnterLoadState<string>
     {

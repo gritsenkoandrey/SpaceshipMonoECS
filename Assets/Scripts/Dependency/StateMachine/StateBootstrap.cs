@@ -1,25 +1,32 @@
-﻿using MonoEcs.Dependency.Loader;
+﻿using AirPlane.App;
+using AirPlane.Dependency.Input;
+using AirPlane.Dependency.Loader;
 using VContainer;
 
-namespace MonoEcs.Dependency.StateMachine
+namespace AirPlane.Dependency.StateMachine
 {
     public sealed class StateBootstrap : IEnterState
     {
         private readonly IGameStateMachine _gameStateMachine;
         private readonly ISceneLoader _sceneLoader;
-        
-        private const string Bootstrap = "Bootstrap";
-        private const string Game = "Game";
+        private readonly IJoystickService _joystickService;
 
         public StateBootstrap(IGameStateMachine gameStateMachine, IObjectResolver container)
         {
             _gameStateMachine = gameStateMachine;
             
             _sceneLoader = container.Resolve<ISceneLoader>();
+            _joystickService = container.Resolve<IJoystickService>();
         }
 
-        void IEnterState.Enter() => _sceneLoader.Load(Bootstrap, Next);
+        void IEnterState.Enter()
+        {
+            _joystickService.Init();
+            
+            _sceneLoader.Load(SceneName.Bootstrap, Next);
+        }
+
         void IExitState.Exit() { }
-        private void Next() => _gameStateMachine.Enter<StateLoadLevel, string>(Game);
+        private void Next() => _gameStateMachine.Enter<StateLoadLevel, string>(SceneName.Game);
     }
 }

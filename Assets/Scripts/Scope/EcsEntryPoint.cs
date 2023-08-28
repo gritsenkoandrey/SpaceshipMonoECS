@@ -1,31 +1,38 @@
 ﻿using System;
-using MonoEcs.Core;
-using MonoEcs.Example.Components;
-using MonoEcs.Example.EntityOne;
-using MonoEcs.Example.EntityTwo;
+using AirPlane.Core;
+using AirPlane.Dependency.Input;
+using AirPlane.Game.Components;
+using AirPlane.Game.Systems.Init;
+using AirPlane.Game.Systems.Run;
+using VContainer;
 using VContainer.Unity;
 
-namespace MonoEcs.Scope
+namespace AirPlane.Scope
 {
     public sealed class EcsEntryPoint : IInitializable, IStartable, ITickable, IFixedTickable, ILateTickable, IDisposable
     {
         private readonly EcsWorld _ecsWorld;
 
-        public EcsEntryPoint()
+        private readonly IJoystickService _joystickService;
+
+        public EcsEntryPoint(IObjectResolver container)
         {
             _ecsWorld = new EcsWorld();
+
+            _joystickService = container.Resolve<IJoystickService>();
         }
         
         void IInitializable.Initialize()
         {
-            _ecsWorld.RegisterComponent<DebugOneComponent>();
-            _ecsWorld.RegisterComponent<DebugTwoComponent>();
-
-            _ecsWorld.RegisterSystem(new DebugInitSystem(_ecsWorld));
-            _ecsWorld.RegisterSystem(new ColorInitSystem(_ecsWorld));
+            _ecsWorld.RegisterComponent<TransformComponent>();
+            _ecsWorld.RegisterComponent<PlayerComponent>();
+            _ecsWorld.RegisterComponent<PlanetComponent>();
             
-            _ecsWorld.RegisterSystem(new DebugRunSystem(_ecsWorld));
-            _ecsWorld.RegisterSystem(new ColorRunSystem(_ecsWorld));
+            _ecsWorld.RegisterSystem(new PlayerMoveInitSystem(_ecsWorld));
+            _ecsWorld.RegisterSystem(new PlanetMoveInitSystem(_ecsWorld));
+            
+            _ecsWorld.RegisterSystem(new PlayerMoveRunSystem(_ecsWorld, _joystickService));
+            _ecsWorld.RegisterSystem(new PlanetMoveRunSystem(_ecsWorld));
         }
 
         void IStartable.Start() => _ecsWorld.EnableSystem();

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using MonoEcs.Core.Components;
-using MonoEcs.Core.Systems;
+using AirPlane.Core.Components;
+using AirPlane.Core.Systems;
 
-namespace MonoEcs.Core
+namespace AirPlane.Core
 {
     public sealed class EcsWorld
     {

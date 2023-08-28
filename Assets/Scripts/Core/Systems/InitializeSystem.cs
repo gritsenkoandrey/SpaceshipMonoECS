@@ -1,6 +1,6 @@
-﻿using MonoEcs.Core.Entities;
+﻿using AirPlane.Core.Entities;
 
-namespace MonoEcs.Core.Systems
+namespace AirPlane.Core.Systems
 {
     public abstract class InitializeSystem<T> : IInitializeSystem where T : EntityBase
     {

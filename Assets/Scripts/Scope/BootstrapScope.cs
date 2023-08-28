@@ -1,9 +1,10 @@
-﻿using MonoEcs.Dependency.Loader;
-using MonoEcs.Dependency.StateMachine;
+﻿using AirPlane.Dependency.Input;
+using AirPlane.Dependency.Loader;
+using AirPlane.Dependency.StateMachine;
 using VContainer;
 using VContainer.Unity;
 
-namespace MonoEcs.Scope
+namespace AirPlane.Scope
 {
     public sealed class BootstrapScope : LifetimeScope
     {
@@ -16,6 +17,8 @@ namespace MonoEcs.Scope
 
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterComponentInHierarchy<JoystickService>().As<IJoystickService>();
+            
             builder.Register<ISceneLoader, SceneLoader>(Lifetime.Singleton);
             builder.Register<IGameStateMachine, GameStateMachine>(Lifetime.Singleton);
 

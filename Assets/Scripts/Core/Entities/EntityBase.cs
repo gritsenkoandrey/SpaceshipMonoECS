@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MonoEcs.Core.Entities
+namespace AirPlane.Core.Entities
 {
     public abstract class EntityBase : MonoBehaviour
     {

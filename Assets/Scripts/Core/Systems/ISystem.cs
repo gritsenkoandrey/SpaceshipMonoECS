@@ -1,4 +1,4 @@
-﻿namespace MonoEcs.Core.Systems
+﻿namespace AirPlane.Core.Systems
 {
     public interface ISystem
     {

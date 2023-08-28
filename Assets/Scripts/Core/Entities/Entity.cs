@@ -1,4 +1,4 @@
-﻿namespace MonoEcs.Core.Entities
+﻿namespace AirPlane.Core.Entities
 {
     public abstract class Entity<T> : EntityBase where T : EntityBase
     {

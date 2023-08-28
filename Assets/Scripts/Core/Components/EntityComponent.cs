@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoEcs.Core.Components
+namespace AirPlane.Core.Components
 {
     public sealed class EntityComponent<T> : IComponent where T : struct
     {

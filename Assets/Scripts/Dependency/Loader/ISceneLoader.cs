@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoEcs.Dependency.Loader
+namespace AirPlane.Dependency.Loader
 {
     public interface ISceneLoader
     {

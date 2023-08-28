@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoEcs.Core.Components
+namespace AirPlane.Core.Components
 {
     public interface IComponent
     {
