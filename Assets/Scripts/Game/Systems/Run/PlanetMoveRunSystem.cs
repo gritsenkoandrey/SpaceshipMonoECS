@@ -24,12 +24,12 @@ namespace Game.Systems.Run
                 ref TransformComponent transformComponent = ref _transformComponent.GetComponent(entity);
                 ref PlanetComponent planetComponent = ref _planetComponent.GetComponent(entity);
 
-                Move(transformComponent, ref planetComponent);
-                Rotate(transformComponent, ref planetComponent);
+                Move(ref transformComponent, ref planetComponent);
+                Rotate(ref transformComponent, ref planetComponent);
             }
         }
 
-        private void Move(TransformComponent transform, ref PlanetComponent planet)
+        private void Move(ref TransformComponent transform, ref PlanetComponent planet)
         {
             Vector3 position = planet.Center.position;
                 
@@ -41,7 +41,7 @@ namespace Game.Systems.Run
             planet.CurrentOrbitAngle += 0.5f * Time.deltaTime * planet.Speed;
         }
 
-        private void Rotate(TransformComponent transform, ref PlanetComponent planet)
+        private void Rotate(ref TransformComponent transform, ref PlanetComponent planet)
         {
             transform.Transform.rotation = Quaternion.AngleAxis(planet.CurrentRotateAngle, Vector3.up * planet.Speed);
             

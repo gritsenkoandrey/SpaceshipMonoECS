@@ -30,6 +30,11 @@ namespace Dependency.Input
             return _value;
         }
 
+        public bool JoystickHeld()
+        {
+            return _joystickHeld;
+        }
+
         void IJoystickService.Init()
         {
             _value = Vector2.zero;

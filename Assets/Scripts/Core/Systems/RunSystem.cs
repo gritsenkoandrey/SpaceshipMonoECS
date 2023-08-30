@@ -42,17 +42,19 @@ namespace Core.Systems
                 }
             }
 
-            int count = 0;
-            
-            for (int i = 0; i < _ecsWorld.Components.Count; i++)
-            {
-                if (_ecsWorld.Components[i].ContainsComponent(entity))
-                {
-                    count++;
-                }
-            }
-            
-            return count == _components.Count;
+            return true;
+
+            // int count = 0;
+            //
+            // for (int i = 0; i < _ecsWorld.Components.Count; i++)
+            // {
+            //     if (_ecsWorld.Components[i].ContainsComponent(entity))
+            //     {
+            //         count++;
+            //     }
+            // }
+            //
+            // return count == _components.Count;
         }
     }
 }

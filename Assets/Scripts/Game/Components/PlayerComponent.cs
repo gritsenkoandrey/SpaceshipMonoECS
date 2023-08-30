@@ -1,8 +1,9 @@
-﻿namespace Game.Components
+﻿using UnityEngine;
+
+namespace Game.Components
 {
     public struct PlayerComponent
     {
-        public float MoveSpeed;
-        public float RotationSpeed;
+        public Vector3 Velocity;
     }
 }

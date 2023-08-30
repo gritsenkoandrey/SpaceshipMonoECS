@@ -27,12 +27,17 @@ namespace Scope
             _ecsWorld.RegisterComponent<TransformComponent>();
             _ecsWorld.RegisterComponent<PlayerComponent>();
             _ecsWorld.RegisterComponent<PlanetComponent>();
+            _ecsWorld.RegisterComponent<AccelerateComponent>();
+            _ecsWorld.RegisterComponent<InputComponent>();
+            _ecsWorld.RegisterComponent<SpeedComponent>();
             
             _ecsWorld.RegisterSystem(new PlayerMoveInitSystem(_ecsWorld));
             _ecsWorld.RegisterSystem(new PlanetMoveInitSystem(_ecsWorld));
             
-            _ecsWorld.RegisterSystem(new PlayerMoveRunSystem(_ecsWorld, _joystickService));
+            _ecsWorld.RegisterSystem(new PlayerInputRunSystem(_ecsWorld, _joystickService));
+            _ecsWorld.RegisterSystem(new PlayerMoveRunSystem(_ecsWorld));
             _ecsWorld.RegisterSystem(new PlanetMoveRunSystem(_ecsWorld));
+            _ecsWorld.RegisterSystem(new PlayerAccelerateRunSystem(_ecsWorld));
         }
 
         void IStartable.Start() => _ecsWorld.EnableSystem();
