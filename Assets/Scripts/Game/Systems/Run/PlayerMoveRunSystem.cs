@@ -1,5 +1,4 @@
 ﻿using Core;
-using Core.Components;
 using Core.Systems;
 using Game.Components;
 using UnityEngine;
@@ -8,30 +7,22 @@ namespace Game.Systems.Run
 {
     public sealed class PlayerMoveRunSystem : RunSystem, IUpdateSystem
     {
-        private readonly EntityComponent<TransformComponent> _transformComponent;
-        private readonly EntityComponent<PlayerComponent> _playerComponent;
-        private readonly EntityComponent<AccelerateComponent> _accelerateComponent;
-        private readonly EntityComponent<SpeedComponent> _speedComponent;
-        private readonly EntityComponent<InputComponent> _inputComponent;
+        private readonly Filter<TransformComponent, PlayerComponent, AccelerateComponent, SpeedComponent, InputComponent> _filter;
 
         public PlayerMoveRunSystem(EcsWorld ecsWorld) : base(ecsWorld)
         {
-            _transformComponent = Get<TransformComponent>();
-            _playerComponent = Get<PlayerComponent>();
-            _accelerateComponent = Get<AccelerateComponent>();
-            _speedComponent = Get<SpeedComponent>();
-            _inputComponent = Get<InputComponent>();
+            _filter = new Filter<TransformComponent, PlayerComponent, AccelerateComponent, SpeedComponent, InputComponent>(ecsWorld);
         }
 
         public void Update(int entity)
         {
-            if (Filter(entity))
+            if (_filter.IsFilter(entity))
             {
-                ref TransformComponent transform = ref _transformComponent.GetComponent(entity);
-                ref PlayerComponent player = ref _playerComponent.GetComponent(entity);
-                ref AccelerateComponent accelerate = ref _accelerateComponent.GetComponent(entity);
-                ref SpeedComponent speed = ref _speedComponent.GetComponent(entity);
-                ref InputComponent input = ref _inputComponent.GetComponent(entity);
+                ref TransformComponent transform = ref _filter.GetT1(entity);
+                ref PlayerComponent player = ref _filter.GetT2(entity);
+                ref AccelerateComponent accelerate = ref _filter.GetT3(entity);
+                ref SpeedComponent speed = ref _filter.GetT4(entity);
+                ref InputComponent input = ref _filter.GetT5(entity);
 
                 Move(ref transform, ref player, ref accelerate, ref speed);
                 Rotate(ref transform, ref speed, ref input);

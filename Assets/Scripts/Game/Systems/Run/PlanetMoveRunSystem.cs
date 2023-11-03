@@ -1,5 +1,4 @@
 ﻿using Core;
-using Core.Components;
 using Core.Systems;
 using Game.Components;
 using UnityEngine;
@@ -8,21 +7,19 @@ namespace Game.Systems.Run
 {
     public sealed class PlanetMoveRunSystem : RunSystem, IUpdateSystem
     {
-        private readonly EntityComponent<TransformComponent> _transformComponent;
-        private readonly EntityComponent<PlanetComponent> _planetComponent;
-        
+        private readonly Filter<TransformComponent, PlanetComponent> _filter;
+
         public PlanetMoveRunSystem(EcsWorld ecsWorld) : base(ecsWorld)
         {
-            _transformComponent = Get<TransformComponent>();
-            _planetComponent = Get<PlanetComponent>();
+            _filter = new Filter<TransformComponent, PlanetComponent>(ecsWorld);
         }
 
         public void Update(int entity)
         {
-            if (Filter(entity))
+            if (_filter.IsFilter(entity))
             {
-                ref TransformComponent transformComponent = ref _transformComponent.GetComponent(entity);
-                ref PlanetComponent planetComponent = ref _planetComponent.GetComponent(entity);
+                ref TransformComponent transformComponent = ref _filter.GetT1(entity);
+                ref PlanetComponent planetComponent = ref _filter.GetT2(entity);
 
                 Move(ref transformComponent, ref planetComponent);
                 Rotate(ref transformComponent, ref planetComponent);

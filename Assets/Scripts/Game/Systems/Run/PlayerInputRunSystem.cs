@@ -1,5 +1,4 @@
 ﻿using Core;
-using Core.Components;
 using Core.Systems;
 using Dependency.Input;
 using Game.Components;
@@ -10,23 +9,19 @@ namespace Game.Systems.Run
     public sealed class PlayerInputRunSystem : RunSystem, IUpdateSystem
     {
         private readonly IJoystickService _joystickService;
-        
-        private readonly EntityComponent<PlayerComponent> _playerComponent;
-        private readonly EntityComponent<InputComponent> _inputComponent;
+        private readonly Filter<PlayerComponent, InputComponent> _filter;
 
         public PlayerInputRunSystem(EcsWorld ecsWorld, IJoystickService joystickService) : base(ecsWorld)
         {
+            _filter = new Filter<PlayerComponent, InputComponent>(ecsWorld);
             _joystickService = joystickService;
-            
-            _playerComponent = Get<PlayerComponent>();
-            _inputComponent = Get<InputComponent>();
         }
 
         public void Update(int entity)
         {
-            if (Filter(entity))
+            if (_filter.IsFilter(entity))
             {
-                ref InputComponent input = ref _inputComponent.GetComponent(entity);
+                ref InputComponent input = ref _filter.GetT2(entity);
 
                 UpdateInput(ref input);
             }

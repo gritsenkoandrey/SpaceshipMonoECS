@@ -1,5 +1,4 @@
 ﻿using Core;
-using Core.Components;
 using Core.Systems;
 using Game.Components;
 using UnityEngine;
@@ -8,27 +7,21 @@ namespace Game.Systems.Run
 {
     public sealed class PlayerAccelerateRunSystem : RunSystem, ILateUpdateSystem
     {
-        private readonly EntityComponent<TransformComponent> _transformComponent;
-        private readonly EntityComponent<PlayerComponent> _playerComponent;
-        private readonly EntityComponent<AccelerateComponent> _accelerateComponent;
-        private readonly EntityComponent<InputComponent> _inputComponent;
+        private readonly Filter<TransformComponent, PlayerComponent, AccelerateComponent, InputComponent> _filter;
 
         public PlayerAccelerateRunSystem(EcsWorld ecsWorld) : base(ecsWorld)
         {
-            _transformComponent = Get<TransformComponent>();
-            _playerComponent = Get<PlayerComponent>();
-            _accelerateComponent = Get<AccelerateComponent>();
-            _inputComponent = Get<InputComponent>();
+            _filter = new Filter<TransformComponent, PlayerComponent, AccelerateComponent, InputComponent>(ecsWorld);
         }
 
         public void LateUpdate(int entity)
         {
-            if (Filter(entity))
+            if (_filter.IsFilter(entity))
             {
-                ref TransformComponent transform = ref _transformComponent.GetComponent(entity);
-                ref PlayerComponent player = ref _playerComponent.GetComponent(entity);
-                ref AccelerateComponent accelerate = ref _accelerateComponent.GetComponent(entity);
-                ref InputComponent inputComponent = ref _inputComponent.GetComponent(entity);
+                ref TransformComponent transform = ref _filter.GetT1(entity);
+                ref PlayerComponent player = ref _filter.GetT2(entity);
+                ref AccelerateComponent accelerate = ref _filter.GetT3(entity);
+                ref InputComponent inputComponent = ref _filter.GetT4(entity);
                 
                 CalculateFactor(ref accelerate, ref player, ref transform, ref inputComponent);
             }
