@@ -17,13 +17,13 @@ namespace Core
 
         protected EntityComponent<T> Get<T>(Type type) where T : struct
         {
-            for (int i = 0; i < _ecsWorld.Components.Count; i++)
+            for (int i = 0; i < _ecsWorld.ComponentRegistryService.Components.Count; i++)
             {
-                if (_ecsWorld.Components[i].GetTypeComponent() == type)
+                if (_ecsWorld.ComponentRegistryService.Components[i].GetTypeComponent() == type)
                 {
-                    _components.Add(_ecsWorld.Components[i]);
+                    _components.Add(_ecsWorld.ComponentRegistryService.Components[i]);
 
-                    return (EntityComponent<T>)_ecsWorld.Components[i];
+                    return (EntityComponent<T>)_ecsWorld.ComponentRegistryService.Components[i];
                 }
             }
 

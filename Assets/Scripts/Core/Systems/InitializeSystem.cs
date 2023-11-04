@@ -28,7 +28,7 @@ namespace Core.Systems
 
         private void OnRegistered(T entity)
         {
-            int index = _ecsWorld.RegisterEntity();
+            int index = _ecsWorld.EntitiesRegistryService.RegisterEntity();
 
             entity.SetId(index);
             
@@ -37,7 +37,7 @@ namespace Core.Systems
 
         private void OnUnregistered(T entity)
         {
-            _ecsWorld.UnregisterEntity(entity.Id);
+            _ecsWorld.EntitiesRegistryService.UnregisterEntity(entity.Id);
             
             Disable(entity);
         }

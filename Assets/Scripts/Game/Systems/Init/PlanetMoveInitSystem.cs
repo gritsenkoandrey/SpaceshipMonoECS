@@ -19,11 +19,11 @@ namespace Game.Systems.Init
         {
             base.Enable(entity);
             
-            ref TransformComponent transformComponent = ref _ecsWorld.GetComponent<TransformComponent>(entity.Id);
-            ref PlanetComponent planetComponent = ref _ecsWorld.GetComponent<PlanetComponent>(entity.Id);
+            ref TransformComponent transformComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<TransformComponent>(entity.Id);
+            ref PlanetComponent planetComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<PlanetComponent>(entity.Id);
             
-            _ecsWorld.SetComponent(entity.Id, ref transformComponent);
-            _ecsWorld.SetComponent(entity.Id, ref planetComponent);
+            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref transformComponent);
+            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref planetComponent);
 
             transformComponent.Transform = entity.transform;
             

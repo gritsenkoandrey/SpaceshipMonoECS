@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbf04af7-4591-4fd1-baf0-0a2fa0c0852a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Filters.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Filters.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Services.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Services/ComponentRegistryService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Services/ComponentRegistryService.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Services/EntitiesRegistryService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Services/EntitiesRegistryService.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Services/SystemRegistryService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Services/SystemRegistryService.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AirPlaneMonoECS/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AirPlaneMonoECS/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Systems/RunSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Systems/RunSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Run/PlanetMoveRunSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Run/PlanetMoveRunSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Run/PlayerAccelerateRunSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Run/PlayerAccelerateRunSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Run/PlayerInputRunSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Run/PlayerInputRunSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Run/PlayerMoveRunSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Run/PlayerMoveRunSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP_AssetRenderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP_AssetRenderer.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/EcsWorld.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/EcsWorld.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Filters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Filters.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Core/Systems/InitializeSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Core/Systems/InitializeSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Init/PlanetMoveInitSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Init/PlanetMoveInitSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Init/PlayerMoveInitSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Systems/Init/PlayerMoveInitSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Scope/EcsEntryPoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Scope/EcsEntryPoint.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +105,9 @@
       <workItem from="1698909814840" duration="5475000" />
       <workItem from="1698927396808" duration="13369000" />
       <workItem from="1698997303683" duration="12410000" />
-      <workItem from="1699027877454" duration="417000" />
+      <workItem from="1699027877454" duration="3027000" />
+      <workItem from="1699100246143" duration="1325000" />
+      <workItem from="1699125386209" duration="799000" />
     </task>
     <servers />
   </component>

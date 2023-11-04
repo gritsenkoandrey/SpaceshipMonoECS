@@ -18,17 +18,17 @@ namespace Game.Systems.Init
         {
             base.Enable(entity);
 
-            ref TransformComponent transformComponent = ref _ecsWorld.GetComponent<TransformComponent>(entity.Id);
-            ref PlayerComponent playerComponent = ref _ecsWorld.GetComponent<PlayerComponent>(entity.Id);
-            ref AccelerateComponent accelerateComponent = ref _ecsWorld.GetComponent<AccelerateComponent>(entity.Id);
-            ref InputComponent inputComponent = ref _ecsWorld.GetComponent<InputComponent>(entity.Id);
-            ref SpeedComponent speedComponent = ref _ecsWorld.GetComponent<SpeedComponent>(entity.Id);
+            ref TransformComponent transformComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<TransformComponent>(entity.Id);
+            ref PlayerComponent playerComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<PlayerComponent>(entity.Id);
+            ref AccelerateComponent accelerateComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<AccelerateComponent>(entity.Id);
+            ref InputComponent inputComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<InputComponent>(entity.Id);
+            ref SpeedComponent speedComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<SpeedComponent>(entity.Id);
 
-            _ecsWorld.SetComponent(entity.Id, ref transformComponent);
-            _ecsWorld.SetComponent(entity.Id, ref playerComponent);
-            _ecsWorld.SetComponent(entity.Id, ref accelerateComponent);
-            _ecsWorld.SetComponent(entity.Id, ref inputComponent);
-            _ecsWorld.SetComponent(entity.Id, ref speedComponent);
+            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref transformComponent);
+            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref playerComponent);
+            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref accelerateComponent);
+            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref inputComponent);
+            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref speedComponent);
 
             transformComponent.Transform = entity.transform;
             

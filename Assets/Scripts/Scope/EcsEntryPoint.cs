@@ -24,26 +24,26 @@ namespace Scope
         
         void IInitializable.Initialize()
         {
-            _ecsWorld.RegisterComponent<TransformComponent>();
-            _ecsWorld.RegisterComponent<PlayerComponent>();
-            _ecsWorld.RegisterComponent<PlanetComponent>();
-            _ecsWorld.RegisterComponent<AccelerateComponent>();
-            _ecsWorld.RegisterComponent<InputComponent>();
-            _ecsWorld.RegisterComponent<SpeedComponent>();
+            _ecsWorld.ComponentRegistryService.RegisterComponent<TransformComponent>();
+            _ecsWorld.ComponentRegistryService.RegisterComponent<PlayerComponent>();
+            _ecsWorld.ComponentRegistryService.RegisterComponent<PlanetComponent>();
+            _ecsWorld.ComponentRegistryService.RegisterComponent<AccelerateComponent>();
+            _ecsWorld.ComponentRegistryService.RegisterComponent<InputComponent>();
+            _ecsWorld.ComponentRegistryService.RegisterComponent<SpeedComponent>();
             
-            _ecsWorld.RegisterSystem(new PlayerMoveInitSystem(_ecsWorld));
-            _ecsWorld.RegisterSystem(new PlanetMoveInitSystem(_ecsWorld));
+            _ecsWorld.SystemRegistryService.RegisterSystem(new PlayerMoveInitSystem(_ecsWorld));
+            _ecsWorld.SystemRegistryService.RegisterSystem(new PlanetMoveInitSystem(_ecsWorld));
             
-            _ecsWorld.RegisterSystem(new PlayerInputRunSystem(_ecsWorld, _joystickService));
-            _ecsWorld.RegisterSystem(new PlayerMoveRunSystem(_ecsWorld));
-            _ecsWorld.RegisterSystem(new PlanetMoveRunSystem(_ecsWorld));
-            _ecsWorld.RegisterSystem(new PlayerAccelerateRunSystem(_ecsWorld));
+            _ecsWorld.SystemRegistryService.RegisterSystem(new PlayerInputRunSystem(_ecsWorld, _joystickService));
+            _ecsWorld.SystemRegistryService.RegisterSystem(new PlayerMoveRunSystem(_ecsWorld));
+            _ecsWorld.SystemRegistryService.RegisterSystem(new PlanetMoveRunSystem(_ecsWorld));
+            _ecsWorld.SystemRegistryService.RegisterSystem(new PlayerAccelerateRunSystem(_ecsWorld));
         }
 
-        void IStartable.Start() => _ecsWorld.EnableSystem();
-        void ITickable.Tick() => _ecsWorld.Update();
-        void IFixedTickable.FixedTick() => _ecsWorld.FixedUpdate();
-        void ILateTickable.LateTick() => _ecsWorld.LateUpdate();
-        void IDisposable.Dispose() => _ecsWorld.DisableSystem();
+        void IStartable.Start() => _ecsWorld.SystemRegistryService.EnableSystem();
+        void ITickable.Tick() => _ecsWorld.SystemRegistryService.Update();
+        void IFixedTickable.FixedTick() => _ecsWorld.SystemRegistryService.FixedUpdate();
+        void ILateTickable.LateTick() => _ecsWorld.SystemRegistryService.LateUpdate();
+        void IDisposable.Dispose() => _ecsWorld.SystemRegistryService.DisableSystem();
     }
 }
