@@ -1,33 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
 using Core.Components;
+using Core.Services;
 
 namespace Core
 {
     public abstract class BaseFilter
     {
-        private readonly EcsWorld _ecsWorld;
+        private readonly ComponentRegistryService _componentRegistryService;
         private readonly IList<IComponent> _components;
 
         protected BaseFilter(EcsWorld ecsWorld)
         {
-            _ecsWorld = ecsWorld;
+            _componentRegistryService = ecsWorld.ComponentRegistryService;
             _components = new List<IComponent>();
         }
 
         protected EntityComponent<T> Get<T>(Type type) where T : struct
         {
-            for (int i = 0; i < _ecsWorld.ComponentRegistryService.Components.Count; i++)
+            for (int i = 0; i < _componentRegistryService.Components.Count; i++)
             {
-                if (_ecsWorld.ComponentRegistryService.Components[i].GetTypeComponent() == type)
+                if (_componentRegistryService.Components[i].GetTypeComponent() == type)
                 {
-                    _components.Add(_ecsWorld.ComponentRegistryService.Components[i]);
-
-                    return (EntityComponent<T>)_ecsWorld.ComponentRegistryService.Components[i];
+                    _components.Add(_componentRegistryService.Components[i]);
+            
+                    return (EntityComponent<T>)_componentRegistryService.Components[i];
                 }
             }
-
+            
             return null;
+        }
+
+        protected ref T Set<T>(EntityComponent<T> entityComponent, int entity) where T : struct
+        {
+            ref T component = ref entityComponent.GetComponent(entity);
+            
+            entityComponent.SetComponent(entity, ref component);
+
+            return ref component;
         }
 
         public bool IsFilter(int entity)
@@ -55,6 +65,7 @@ namespace Core
         }
 
         public ref T1 GetT1(int entity) => ref _componentT1.GetComponent(entity);
+        public ref T1 SetT1(int entity) => ref Set(_componentT1, entity);
     }
 
     public sealed class Filter<T1, T2> : BaseFilter
@@ -71,6 +82,8 @@ namespace Core
 
         public ref T1 GetT1(int entity) => ref _componentT1.GetComponent(entity);
         public ref T2 GetT2(int entity) => ref _componentT2.GetComponent(entity);
+        public ref T1 SetT1(int entity) => ref Set(_componentT1, entity);
+        public ref T2 SetT2(int entity) => ref Set(_componentT2, entity);
     }
 
     public sealed class Filter<T1, T2, T3> : BaseFilter
@@ -90,6 +103,9 @@ namespace Core
         public ref T1 GetT1(int entity) => ref _componentT1.GetComponent(entity);
         public ref T2 GetT2(int entity) => ref _componentT2.GetComponent(entity);
         public ref T3 GetT3(int entity) => ref _componentT3.GetComponent(entity);
+        public ref T1 SetT1(int entity) => ref Set(_componentT1, entity);
+        public ref T2 SetT2(int entity) => ref Set(_componentT2, entity);
+        public ref T3 SetT3(int entity) => ref Set(_componentT3, entity);
     }
 
     public sealed class Filter<T1, T2, T3, T4> : BaseFilter
@@ -112,6 +128,10 @@ namespace Core
         public ref T2 GetT2(int entity) => ref _componentT2.GetComponent(entity);
         public ref T3 GetT3(int entity) => ref _componentT3.GetComponent(entity);
         public ref T4 GetT4(int entity) => ref _componentT4.GetComponent(entity);
+        public ref T1 SetT1(int entity) => ref Set(_componentT1, entity);
+        public ref T2 SetT2(int entity) => ref Set(_componentT2, entity);
+        public ref T3 SetT3(int entity) => ref Set(_componentT3, entity);
+        public ref T4 SetT4(int entity) => ref Set(_componentT4, entity);
     }
 
     public sealed class Filter<T1, T2, T3, T4, T5> : BaseFilter
@@ -137,6 +157,11 @@ namespace Core
         public ref T3 GetT3(int entity) => ref _componentT3.GetComponent(entity);
         public ref T4 GetT4(int entity) => ref _componentT4.GetComponent(entity);
         public ref T5 GetT5(int entity) => ref _componentT5.GetComponent(entity);
+        public ref T1 SetT1(int entity) => ref Set(_componentT1, entity);
+        public ref T2 SetT2(int entity) => ref Set(_componentT2, entity);
+        public ref T3 SetT3(int entity) => ref Set(_componentT3, entity);
+        public ref T4 SetT4(int entity) => ref Set(_componentT4, entity);
+        public ref T5 SetT5(int entity) => ref Set(_componentT5, entity);
     }
     
     public sealed class Filter<T1, T2, T3, T4, T5, T6> : BaseFilter
@@ -165,6 +190,12 @@ namespace Core
         public ref T4 GetT4(int entity) => ref _componentT4.GetComponent(entity);
         public ref T5 GetT5(int entity) => ref _componentT5.GetComponent(entity);
         public ref T6 GetT6(int entity) => ref _componentT6.GetComponent(entity);
+        public ref T1 SetT1(int entity) => ref Set(_componentT1, entity);
+        public ref T2 SetT2(int entity) => ref Set(_componentT2, entity);
+        public ref T3 SetT3(int entity) => ref Set(_componentT3, entity);
+        public ref T4 SetT4(int entity) => ref Set(_componentT4, entity);
+        public ref T5 SetT5(int entity) => ref Set(_componentT5, entity);
+        public ref T6 SetT6(int entity) => ref Set(_componentT6, entity);
     }
     
     public sealed class Filter<T1, T2, T3, T4, T5, T6, T7> : BaseFilter
@@ -196,6 +227,13 @@ namespace Core
         public ref T5 GetT5(int entity) => ref _componentT5.GetComponent(entity);
         public ref T6 GetT6(int entity) => ref _componentT6.GetComponent(entity);
         public ref T7 GetT7(int entity) => ref _componentT7.GetComponent(entity);
+        public ref T1 SetT1(int entity) => ref Set(_componentT1, entity);
+        public ref T2 SetT2(int entity) => ref Set(_componentT2, entity);
+        public ref T3 SetT3(int entity) => ref Set(_componentT3, entity);
+        public ref T4 SetT4(int entity) => ref Set(_componentT4, entity);
+        public ref T5 SetT5(int entity) => ref Set(_componentT5, entity);
+        public ref T6 SetT6(int entity) => ref Set(_componentT6, entity);
+        public ref T7 SetT7(int entity) => ref Set(_componentT7, entity);
     }
     
     public sealed class Filter<T1, T2, T3, T4, T5, T6, T7, T8> : BaseFilter
@@ -230,6 +268,14 @@ namespace Core
         public ref T6 GetT6(int entity) => ref _componentT6.GetComponent(entity);
         public ref T7 GetT7(int entity) => ref _componentT7.GetComponent(entity);
         public ref T8 GetT8(int entity) => ref _componentT8.GetComponent(entity);
+        public ref T1 SetT1(int entity) => ref Set(_componentT1, entity);
+        public ref T2 SetT2(int entity) => ref Set(_componentT2, entity);
+        public ref T3 SetT3(int entity) => ref Set(_componentT3, entity);
+        public ref T4 SetT4(int entity) => ref Set(_componentT4, entity);
+        public ref T5 SetT5(int entity) => ref Set(_componentT5, entity);
+        public ref T6 SetT6(int entity) => ref Set(_componentT6, entity);
+        public ref T7 SetT7(int entity) => ref Set(_componentT7, entity);
+        public ref T8 SetT8(int entity) => ref Set(_componentT8, entity);
     }
     
     public sealed class Filter<T1, T2, T3, T4, T5, T6, T7, T8, T9> : BaseFilter
@@ -267,5 +313,14 @@ namespace Core
         public ref T7 GetT7(int entity) => ref _componentT7.GetComponent(entity);
         public ref T8 GetT8(int entity) => ref _componentT8.GetComponent(entity);
         public ref T9 GetT9(int entity) => ref _componentT9.GetComponent(entity);
+        public ref T1 SetT1(int entity) => ref Set(_componentT1, entity);
+        public ref T2 SetT2(int entity) => ref Set(_componentT2, entity);
+        public ref T3 SetT3(int entity) => ref Set(_componentT3, entity);
+        public ref T4 SetT4(int entity) => ref Set(_componentT4, entity);
+        public ref T5 SetT5(int entity) => ref Set(_componentT5, entity);
+        public ref T6 SetT6(int entity) => ref Set(_componentT6, entity);
+        public ref T7 SetT7(int entity) => ref Set(_componentT7, entity);
+        public ref T8 SetT8(int entity) => ref Set(_componentT8, entity);
+        public ref T9 SetT9(int entity) => ref Set(_componentT9, entity);
     }
 }

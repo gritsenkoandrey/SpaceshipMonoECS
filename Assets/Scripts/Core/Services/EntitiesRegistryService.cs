@@ -6,7 +6,6 @@ namespace Core.Services
     {
         private readonly ComponentRegistryService _componentRegistryService;
         private readonly List<bool> _entities;
-        
         public IReadOnlyList<bool> Entities => _entities;
 
         public EntitiesRegistryService(ComponentRegistryService componentRegistryService)
@@ -33,11 +32,7 @@ namespace Core.Services
             id = count;
             
             _entities.Add(true);
-
-            for (int i = 0; i < _componentRegistryService.Components.Count; i++)
-            {
-                _componentRegistryService.Components[i].AddComponent();
-            }
+            _componentRegistryService.AddComponent();
 
             return id;
         }
@@ -45,11 +40,7 @@ namespace Core.Services
         public void UnregisterEntity(int index)
         {
             _entities[index] = false;
-            
-            for (int i = 0; i < _componentRegistryService.Components.Count; i++)
-            {
-                _componentRegistryService.Components[i].RemoveComponent(index);
-            }
+            _componentRegistryService.RemoveComponent(index);
         }
     }
 }

@@ -78,6 +78,7 @@ namespace Game.Systems.Run
 
             return 0f;
         }
+        
         private float CalculateAngle(PlayerComponent player, TransformComponent transform)
         {
             Vector3 direction = player.Velocity - transform.Transform.position;

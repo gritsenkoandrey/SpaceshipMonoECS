@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Core.Components;
 
 namespace Core.Services
@@ -19,31 +18,19 @@ namespace Core.Services
             _components.Add(new EntityComponent<T>(16));
         }
 
-        public ref T GetComponent<T>(int entity) where T : struct
+        public void AddComponent()
         {
-            Type type = typeof(T);
-            
             for (int i = 0; i < _components.Count; i++)
             {
-                if (_components[i].GetTypeComponent() == type)
-                {
-                    return ref ((EntityComponent<T>) _components[i]).GetComponent(entity);
-                }
+                _components[i].AddComponent();
             }
-            
-            throw new InvalidOperationException($"Component of type {typeof(T)} not found");
         }
 
-        public void SetComponent<T>(int entity, ref T component) where T : struct
+        public void RemoveComponent(int entity)
         {
-            Type type = typeof(T);
-
             for (int i = 0; i < _components.Count; i++)
             {
-                if (_components[i].GetTypeComponent() == type)
-                {
-                    ((EntityComponent<T>)_components[i]).SetComponent(entity, ref component);
-                }
+                _components[i].RemoveComponent(entity);
             }
         }
     }

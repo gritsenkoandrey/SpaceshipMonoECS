@@ -1,14 +1,19 @@
 ﻿using Core.Entities;
+using Core.Services;
 
 namespace Core.Systems
 {
     public abstract class InitializeSystem<T> : IInitializeSystem where T : EntityBase
     {
-        private readonly EcsWorld _ecsWorld;
+        protected readonly EntitiesRegistryService EntitiesRegistryService;
+        protected readonly ComponentRegistryService ComponentRegistryService;
+        protected readonly SystemRegistryService SystemRegistryService;
 
         protected InitializeSystem(EcsWorld ecsWorld)
         {
-            _ecsWorld = ecsWorld;
+            EntitiesRegistryService = ecsWorld.EntitiesRegistryService;
+            ComponentRegistryService = ecsWorld.ComponentRegistryService;
+            SystemRegistryService = ecsWorld.SystemRegistryService;
         }
 
         protected virtual void Enable(T entity) { }
@@ -28,7 +33,7 @@ namespace Core.Systems
 
         private void OnRegistered(T entity)
         {
-            int index = _ecsWorld.EntitiesRegistryService.RegisterEntity();
+            int index = EntitiesRegistryService.RegisterEntity();
 
             entity.SetId(index);
             
@@ -37,7 +42,7 @@ namespace Core.Systems
 
         private void OnUnregistered(T entity)
         {
-            _ecsWorld.EntitiesRegistryService.UnregisterEntity(entity.Id);
+            EntitiesRegistryService.UnregisterEntity(entity.Id);
             
             Disable(entity);
         }

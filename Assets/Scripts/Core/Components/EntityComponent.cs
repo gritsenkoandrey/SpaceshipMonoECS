@@ -35,7 +35,7 @@ namespace Core.Components
 
         void IComponent.RemoveComponent(int entity)
         {
-            ref var component = ref _components[entity];
+            ref ComponentValue component = ref _components[entity];
             
             component.Exists = false;
         }
@@ -54,7 +54,7 @@ namespace Core.Components
 
         public void SetComponent(int entity, ref T value)
         {
-            ref var component = ref _components[entity];
+            ref ComponentValue component = ref _components[entity];
             
             component.Value = value;
             component.Exists = true;

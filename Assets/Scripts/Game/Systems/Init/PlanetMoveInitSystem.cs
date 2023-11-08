@@ -8,22 +8,19 @@ namespace Game.Systems.Init
 {
     public sealed class PlanetMoveInitSystem : InitializeSystem<PlanetEntity>
     {
-        private readonly EcsWorld _ecsWorld;
+        private readonly Filter<TransformComponent, PlanetComponent> _filter;
         
         public PlanetMoveInitSystem(EcsWorld ecsWorld) : base(ecsWorld)
         {
-            _ecsWorld = ecsWorld;
+            _filter = new Filter<TransformComponent, PlanetComponent>(ecsWorld);
         }
 
         protected override void Enable(PlanetEntity entity)
         {
             base.Enable(entity);
             
-            ref TransformComponent transformComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<TransformComponent>(entity.Id);
-            ref PlanetComponent planetComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<PlanetComponent>(entity.Id);
-            
-            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref transformComponent);
-            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref planetComponent);
+            ref TransformComponent transformComponent = ref _filter.SetT1(entity.Id);
+            ref PlanetComponent planetComponent = ref _filter.SetT2(entity.Id);
 
             transformComponent.Transform = entity.transform;
             

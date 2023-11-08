@@ -7,28 +7,21 @@ namespace Game.Systems.Init
 {
     public sealed class PlayerMoveInitSystem : InitializeSystem<PlayerEntity>
     {
-        private readonly EcsWorld _ecsWorld;
-
+        private readonly Filter<TransformComponent, PlayerComponent, AccelerateComponent, InputComponent, SpeedComponent> _filter;
         public PlayerMoveInitSystem(EcsWorld ecsWorld) : base(ecsWorld)
         {
-            _ecsWorld = ecsWorld;
+            _filter = new Filter<TransformComponent, PlayerComponent, AccelerateComponent, InputComponent, SpeedComponent>(ecsWorld);
         }
 
         protected override void Enable(PlayerEntity entity)
         {
             base.Enable(entity);
 
-            ref TransformComponent transformComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<TransformComponent>(entity.Id);
-            ref PlayerComponent playerComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<PlayerComponent>(entity.Id);
-            ref AccelerateComponent accelerateComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<AccelerateComponent>(entity.Id);
-            ref InputComponent inputComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<InputComponent>(entity.Id);
-            ref SpeedComponent speedComponent = ref _ecsWorld.ComponentRegistryService.GetComponent<SpeedComponent>(entity.Id);
-
-            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref transformComponent);
-            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref playerComponent);
-            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref accelerateComponent);
-            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref inputComponent);
-            _ecsWorld.ComponentRegistryService.SetComponent(entity.Id, ref speedComponent);
+            ref TransformComponent transformComponent = ref _filter.SetT1(entity.Id);
+            ref PlayerComponent playerComponent = ref _filter.SetT2(entity.Id);
+            ref AccelerateComponent accelerateComponent = ref _filter.SetT3(entity.Id);
+            ref InputComponent inputComponent = ref _filter.SetT4(entity.Id);
+            ref SpeedComponent speedComponent = ref _filter.SetT5(entity.Id);
 
             transformComponent.Transform = entity.transform;
             
