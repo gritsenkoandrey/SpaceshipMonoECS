@@ -38,6 +38,8 @@ namespace Scope
                 new EntityComponent<SpeedComponent>(),
             };
 
+            RegisterComponents();
+
             _systems = new ISystem[]
             {
                 new PlayerMoveInitSystem(_ecsWorld),
@@ -48,7 +50,6 @@ namespace Scope
                 new PlayerAccelerateRunSystem(_ecsWorld),
             };
 
-            RegisterComponents();
             RegisterSystems();
         }
 
