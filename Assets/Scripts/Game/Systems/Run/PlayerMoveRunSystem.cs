@@ -38,7 +38,11 @@ namespace Game.Systems.Run
         private void Rotate(ref TransformComponent transform, ref SpeedComponent speed, ref InputComponent input)
         {
             Vector3 angle = (Vector3.up * input.Value.x + Vector3.left * input.Value.y) * speed.RotationSpeed * Time.deltaTime;
-            transform.Transform.Rotate(angle, Space.Self);
+           
+            transform.Transform.Rotate(Vector3.forward * (input.Value.x * speed.RotationSpeed * Time.deltaTime));
+            transform.Transform.Rotate(Vector3.right * (-input.Value.y * speed.RotationSpeed * Time.deltaTime));
+            transform.Transform.Rotate(angle);
+            
             transform.Transform.rotation = Quaternion.Slerp(transform.Transform.rotation, Quaternion.Euler(angle), Time.deltaTime);
         }
     }

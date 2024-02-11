@@ -17,6 +17,7 @@ namespace Dependency.StateMachine
 
         void IEnterLoadState<string>.Enter(string scene) => _sceneLoader.Load(scene, Next);
         void IExitState.Exit() { }
+        
         private void Next() => _gameStateMachine.Enter<StateGameLoop>();
     }
 }

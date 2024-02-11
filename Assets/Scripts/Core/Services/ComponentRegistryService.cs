@@ -13,9 +13,9 @@ namespace Core.Services
             _components = new List<IComponent>();
         }
 
-        public void RegisterComponent<T>() where T : struct
+        public void RegisterComponent(IComponent component)
         {
-            _components.Add(new EntityComponent<T>(16));
+            _components.Add(component);
         }
 
         public void AddComponent()

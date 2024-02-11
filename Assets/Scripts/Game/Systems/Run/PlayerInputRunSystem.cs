@@ -3,17 +3,24 @@ using Core.Systems;
 using Dependency.Input;
 using Game.Components;
 using UnityEngine;
+using VContainer;
 
 namespace Game.Systems.Run
 {
     public sealed class PlayerInputRunSystem : RunSystem, IUpdateSystem
     {
-        private readonly IJoystickService _joystickService;
         private readonly Filter<PlayerComponent, InputComponent> _filter;
+        
+        private IJoystickService _joystickService;
 
-        public PlayerInputRunSystem(EcsWorld ecsWorld, IJoystickService joystickService) : base(ecsWorld)
+        public PlayerInputRunSystem(EcsWorld ecsWorld) : base(ecsWorld)
         {
             _filter = new Filter<PlayerComponent, InputComponent>(ecsWorld);
+        }
+
+        [Inject]
+        private void Construct(IJoystickService joystickService)
+        {
             _joystickService = joystickService;
         }
 

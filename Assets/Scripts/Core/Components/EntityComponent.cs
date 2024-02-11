@@ -8,7 +8,7 @@ namespace Core.Components
         private int _size;
         private ComponentValue[] _components;
 
-        public EntityComponent(int length)
+        public EntityComponent(int length = 16)
         {
             _type = typeof(T);
             _size = 0;

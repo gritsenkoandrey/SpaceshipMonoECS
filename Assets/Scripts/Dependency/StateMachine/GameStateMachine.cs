@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using VContainer;
 
 namespace Dependency.StateMachine
 {
+    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature)]
     public sealed class GameStateMachine : IGameStateMachine
     {
         private readonly Dictionary<Type, IExitState> _states;

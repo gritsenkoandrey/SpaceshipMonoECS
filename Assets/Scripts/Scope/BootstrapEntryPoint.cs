@@ -1,11 +1,13 @@
 ﻿using Dependency.Input;
 using Dependency.Loader;
 using Dependency.StateMachine;
+using JetBrains.Annotations;
 using VContainer;
 using VContainer.Unity;
 
 namespace Scope
 {
+    [UsedImplicitly(ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature)]
     public sealed class BootstrapEntryPoint : IStartable, ITickable
     {
         private readonly ISceneLoader _sceneLoader;
@@ -20,6 +22,7 @@ namespace Scope
         }
         
         void IStartable.Start() => _gameStateMachine.Enter<StateBootstrap>();
+        
         void ITickable.Tick() => _joystickService.Execute();
     }
 }
