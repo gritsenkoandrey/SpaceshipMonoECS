@@ -16,7 +16,7 @@ namespace Game.Systems.Run
 
         public void LateUpdate(int entity)
         {
-            if (_filter.IsFilter(entity))
+            if (_filter.Contain(entity))
             {
                 ref TransformComponent transform = ref _filter.GetT1(entity);
                 ref PlayerComponent player = ref _filter.GetT2(entity);

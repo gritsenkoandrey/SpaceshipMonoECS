@@ -26,7 +26,7 @@ namespace Game.Systems.Run
 
         public void Update(int entity)
         {
-            if (_filter.IsFilter(entity))
+            if (_filter.Contain(entity))
             {
                 ref InputComponent input = ref _filter.GetT2(entity);
 

@@ -16,7 +16,7 @@ namespace Game.Systems.Run
 
         public void Update(int entity)
         {
-            if (_filter.IsFilter(entity))
+            if (_filter.Contain(entity))
             {
                 ref TransformComponent transformComponent = ref _filter.GetT1(entity);
                 ref PlanetComponent planetComponent = ref _filter.GetT2(entity);

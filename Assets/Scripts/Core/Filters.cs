@@ -40,7 +40,7 @@ namespace Core
             return ref component;
         }
 
-        public bool IsFilter(int entity)
+        public bool Contain(int entity)
         {
             for (int i = 0; i < _components.Count; i++)
             {
