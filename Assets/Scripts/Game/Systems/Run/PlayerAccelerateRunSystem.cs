@@ -14,7 +14,7 @@ namespace Game.Systems.Run
             _filter = new Filter<TransformComponent, PlayerComponent, AccelerateComponent, InputComponent>(ecsWorld);
         }
 
-        public void LateUpdate(int entity)
+        void ILateUpdateSystem.LateUpdate(int entity)
         {
             if (_filter.Contain(entity))
             {

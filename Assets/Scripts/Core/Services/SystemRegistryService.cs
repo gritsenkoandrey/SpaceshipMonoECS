@@ -5,15 +5,13 @@ namespace Core.Services
 {
     public sealed class SystemRegistryService
     {
-        private readonly EntitiesRegistryService _entitiesRegistryService;
         private readonly IList<IInitializeSystem> _initializeSystems;
         private readonly IList<IUpdateSystem> _updateSystems;
         private readonly IList<IFixedUpdateSystem> _fixedUpdateSystems;
         private readonly IList<ILateUpdateSystem> _lateUpdateSystems;
 
-        public SystemRegistryService(EntitiesRegistryService entitiesRegistryService)
+        public SystemRegistryService()
         {
-            _entitiesRegistryService = entitiesRegistryService;
             _initializeSystems = new List<IInitializeSystem>();
             _updateSystems = new List<IUpdateSystem>();
             _fixedUpdateSystems = new List<IFixedUpdateSystem>();
@@ -55,13 +53,13 @@ namespace Core.Services
             }
         }
 
-        public void Update()
+        public void Update(IReadOnlyList<bool> entities)
         {
             for (int i = 0; i < _updateSystems.Count; i++)
             {
-                for (int entity = 0; entity < _entitiesRegistryService.Entities.Count; entity++)
+                for (int entity = 0; entity < entities.Count; entity++)
                 {
-                    if (_entitiesRegistryService.Entities[entity])
+                    if (entities[entity])
                     {
                         _updateSystems[i].Update(entity);
                     }
@@ -69,13 +67,13 @@ namespace Core.Services
             }
         }
 
-        public void FixedUpdate()
+        public void FixedUpdate(IReadOnlyList<bool> entities)
         {
             for (int i = 0; i < _fixedUpdateSystems.Count; i++)
             {
-                for (int entity = 0; entity < _entitiesRegistryService.Entities.Count; entity++)
+                for (int entity = 0; entity < entities.Count; entity++)
                 {
-                    if (_entitiesRegistryService.Entities[entity])
+                    if (entities[entity])
                     {
                         _fixedUpdateSystems[i].FixedUpdate(entity);
                     }
@@ -83,13 +81,13 @@ namespace Core.Services
             }
         }
 
-        public void LateUpdate()
+        public void LateUpdate(IReadOnlyList<bool> entities)
         {
             for (int i = 0; i < _lateUpdateSystems.Count; i++)
             {
-                for (int entity = 0; entity < _entitiesRegistryService.Entities.Count; entity++)
+                for (int entity = 0; entity < entities.Count; entity++)
                 {
-                    if (_entitiesRegistryService.Entities[entity])
+                    if (entities[entity])
                     {
                         _lateUpdateSystems[i].LateUpdate(entity);
                     }

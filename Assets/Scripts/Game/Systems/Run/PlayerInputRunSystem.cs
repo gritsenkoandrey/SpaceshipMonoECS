@@ -24,7 +24,7 @@ namespace Game.Systems.Run
             _joystickService = joystickService;
         }
 
-        public void Update(int entity)
+        void IUpdateSystem.Update(int entity)
         {
             if (_filter.Contain(entity))
             {

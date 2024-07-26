@@ -34,6 +34,8 @@ namespace Core.Systems
         private void OnRegistered(T entity)
         {
             int index = EntitiesRegistryService.RegisterEntity();
+            
+            ComponentRegistryService.AddComponent();
 
             entity.SetId(index);
             
@@ -43,6 +45,7 @@ namespace Core.Systems
         private void OnUnregistered(T entity)
         {
             EntitiesRegistryService.UnregisterEntity(entity.Id);
+            ComponentRegistryService.RemoveComponent(entity.Id);
             
             Disable(entity);
         }

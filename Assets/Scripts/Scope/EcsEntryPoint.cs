@@ -72,9 +72,9 @@ namespace Scope
         }
 
         void IStartable.Start() => _ecsWorld.SystemRegistryService.EnableSystem();
-        void ITickable.Tick() => _ecsWorld.SystemRegistryService.Update();
-        void IFixedTickable.FixedTick() => _ecsWorld.SystemRegistryService.FixedUpdate();
-        void ILateTickable.LateTick() => _ecsWorld.SystemRegistryService.LateUpdate();
+        void ITickable.Tick() => _ecsWorld.SystemRegistryService.Update(_ecsWorld.EntitiesRegistryService.Entities);
+        void IFixedTickable.FixedTick() => _ecsWorld.SystemRegistryService.FixedUpdate(_ecsWorld.EntitiesRegistryService.Entities);
+        void ILateTickable.LateTick() => _ecsWorld.SystemRegistryService.LateUpdate(_ecsWorld.EntitiesRegistryService.Entities);
         void IDisposable.Dispose() => _ecsWorld.SystemRegistryService.DisableSystem();
     }
 }

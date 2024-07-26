@@ -11,8 +11,8 @@ namespace Core
         public EcsWorld()
         {
             ComponentRegistryService = new ComponentRegistryService();
-            EntitiesRegistryService = new EntitiesRegistryService(ComponentRegistryService);
-            SystemRegistryService = new SystemRegistryService(EntitiesRegistryService);
+            EntitiesRegistryService = new EntitiesRegistryService();
+            SystemRegistryService = new SystemRegistryService();
         }
     }
 }

@@ -4,13 +4,11 @@ namespace Core.Services
 {
     public sealed class EntitiesRegistryService
     {
-        private readonly ComponentRegistryService _componentRegistryService;
         private readonly List<bool> _entities;
         public IReadOnlyList<bool> Entities => _entities;
 
-        public EntitiesRegistryService(ComponentRegistryService componentRegistryService)
+        public EntitiesRegistryService()
         {
-            _componentRegistryService = componentRegistryService;
             _entities = new List<bool>();
         }
         
@@ -32,7 +30,6 @@ namespace Core.Services
             id = count;
             
             _entities.Add(true);
-            _componentRegistryService.AddComponent();
 
             return id;
         }
@@ -40,7 +37,6 @@ namespace Core.Services
         public void UnregisterEntity(int index)
         {
             _entities[index] = false;
-            _componentRegistryService.RemoveComponent(index);
         }
     }
 }
